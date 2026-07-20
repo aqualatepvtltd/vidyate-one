@@ -248,7 +248,7 @@ export default function PortalDashboard() {
             <Search className="h-10 w-10 text-google-gray mx-auto mb-3" />
             <h4 className="font-display text-lg font-bold text-google-dark">No matching gateways found</h4>
             <p className="text-google-gray text-sm mt-1 max-w-md mx-auto">
-              Try adjusting your spelling or category filters. Our current directories cover pharmacy, nursing, commerce, soft skills, and engineering.
+              Try adjusting your spelling or switch category filter to "All Gateways" to see all available portals. You can also clear the search and filters to start fresh.
             </p>
             <button
               onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
