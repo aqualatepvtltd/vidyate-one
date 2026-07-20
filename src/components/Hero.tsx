@@ -52,7 +52,7 @@ export default function Hero() {
           {/* Tagline Badge */}
           <motion.div
             variants={itemVariants}
-            className="mt-32 inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
+            className="mt-28 inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
             id="hero-badge"
           >
             {/* Google colored dots row */}
