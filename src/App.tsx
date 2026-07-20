@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PortalDashboard from './components/PortalDashboard';
@@ -67,6 +68,9 @@ export default function App() {
           type={activePolicy || 'privacy'}
         />
       </div>
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
