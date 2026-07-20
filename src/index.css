@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-google-blue: #1a73e8;
+  --color-google-blue-hover: #1557b0;
+  --color-google-blue-light: #e8f0fe;
+  --color-google-red: #ea4335;
+  --color-google-red-light: #fce8e6;
+  --color-google-yellow: #fbbc05;
+  --color-google-yellow-light: #fef7e0;
+  --color-google-green: #34a853;
+  --color-google-green-light: #e6f4ea;
+  --color-google-dark: #202124;
+  --color-google-gray: #5f6368;
+  --color-google-light-gray: #f1f3f4;
+  --color-google-border: #dadce0;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-google-dark antialiased font-sans scroll-smooth;
+  }
+}
+
+/* Custom modern scrollbar mimicking chrome/google design */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f3f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bdc1c6;
+}
+

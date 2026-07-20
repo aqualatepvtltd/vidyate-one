@@ -1,0 +1,6 @@
+{
+  "name": "Vidyate One",
+  "description": "The central gateway and learning portal for all Vidyate education platforms, fields, and hub resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
