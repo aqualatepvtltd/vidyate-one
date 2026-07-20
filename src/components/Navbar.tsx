@@ -22,9 +22,7 @@ export default function Navbar({ onOpenPolicy }: NavbarProps) {
     { name: 'Portals', href: '#portals' },
     { name: 'Fields', href: '#fields' },
     { name: 'About Us', href: '#about' },
-    { name: 'Get In Touch', href: '#contact' },
-    {name : 'Vidyate Student Hub', href : 'https://vidyate-student-hub.vercel.app/'},
-    {name : 'Vidyate Commerce Hub', href : 'https://vidyate-commerce-hub.vercel.app/'},
+    { name: 'Get In Touch', href: '#contact' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
