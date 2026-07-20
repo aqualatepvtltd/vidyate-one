@@ -52,7 +52,7 @@ export default function Hero() {
           {/* Tagline Badge */}
           <motion.div
             variants={itemVariants}
-            className="mt-28 inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
+            className="mt-20 inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
             id="hero-badge"
           >
             {/* Google colored dots row */}
@@ -105,11 +105,11 @@ export default function Hero() {
           {/* Real-time stats grid (Refined Google One layout style) */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 rounded-2xl border border-google-border bg-white p-6 md:p-8 shadow-xs"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 rounded-2xl border border-google-border bg-white p-6 md:p-8 shadow-xs mt-24"
             id="hero-stats-grid"
           >
             <div className="text-center" id="stat-student">
-              <div className="flex justify-center mb-3" id="stat-student-icon-container">
+              <div className="flex justify-center mb-3 " id="stat-student-icon-container">
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-google-blue-light text-google-blue">
                   <GraduationCap className="h-5.5 w-5.5" />
                 </div>
