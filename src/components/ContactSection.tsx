@@ -15,6 +15,7 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof InquiryFormInput, string>>>({});
 
   const validateForm = (): boolean => {
@@ -51,13 +52,40 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    // Simulate real server database connection and dispatch
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
+
+    const payload = {
+      ...formData,
+      access_key: "bfe80316-38d8-4190-a6a0-1ced2791c960", // Your Web3Forms Access Key
+      from_name: "Vidyate One Contact Form",
+      subject: `New Inquiry from ${formData.name} - ${formData.fieldOfInterest}`,
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitSuccess(true);
+      } else {
+        console.error("Submission Error:", result);
+        setSubmitError(result.message || "Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      setSubmitError("A network error occurred. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleResetForm = () => {
@@ -70,6 +98,7 @@ export default function ContactSection() {
     });
     setSubmitSuccess(false);
     setValidationErrors({});
+    setSubmitError(null);
   };
 
   const copyEmailToClipboard = () => {
@@ -149,6 +178,16 @@ export default function ContactSection() {
                   id="contact-form-component"
                   noValidate
                 >
+                  {submitError && (
+                    <div 
+                      className="p-3 bg-google-red-light border border-google-red/20 text-google-red rounded-xl text-xs font-semibold flex items-center gap-2"
+                      id="form-submit-error"
+                    >
+                      <HelpCircle className="h-4 w-4 shrink-0" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   {/* Name field */}
                   <div id="form-group-name">
                     <label htmlFor="name-input" className="block text-xs font-bold text-google-dark uppercase tracking-wider font-sans mb-2">Full Name</label>
@@ -291,10 +330,10 @@ export default function ContactSection() {
                   className="text-center py-10 px-4 flex flex-col items-center justify-center h-full"
                   id="contact-success-card"
                 >
-                  <div className="h-16 w-16 bg-google-green-light text-google-green rounded-full border border-google-green/20 flex items-center justify-center mb-6 shadow-xs animate-bounce" id="success-icon-container">
+                  <div className="h-16 w-16 bg-google-green-light text-google-green rounded-full border border-google-green/20 flex items-center justify-center mb-6 shadow-xs" id="success-icon-container">
                     <Check className="h-8 w-8" />
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-google-dark mb-2">Inquiry Successfully Routed!</h3>
+                  <h3 className="font-display text-2xl font-bold text-google-dark mb-2">Inquiry Successfully Submitted</h3>
                   <p className="text-google-gray text-sm max-w-sm mx-auto mb-8 leading-relaxed font-normal">
                     Thank you, <strong>{formData.name}</strong>. Your message regarding <strong>{formData.fieldOfInterest}</strong> has been encrypted and logged. A coordinator will contact you at <strong>{formData.email}</strong> shortly.
                   </p>

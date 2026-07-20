@@ -37,11 +37,10 @@ export default function Navbar({ onOpenPolicy }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-google-border py-2.5'
             : 'bg-transparent py-4'
-        }`}
+          }`}
         id="app-navbar"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="navbar-container">
@@ -126,14 +125,7 @@ export default function Navbar({ onOpenPolicy }: NavbarProps) {
               id="mobile-drawer"
             >
               <div className="space-y-8 pt-16" id="mobile-drawer-top">
-                <div className="flex items-center gap-3 border-b border-google-light-gray pb-5" id="mobile-logo-container">
-                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 border border-slate-100" id="mobile-logo-icon">
-                    <div className="w-1.5 h-4.5 rounded-full bg-google-blue rotate-12" />
-                  </div>
-                  <span className="font-display text-lg font-bold tracking-tight text-google-dark">
-                    vidyate <span className="text-google-blue">one</span>
-                  </span>
-                </div>
+                
 
                 <nav className="flex flex-col gap-5" id="mobile-nav">
                   {navItems.map((item) => (
@@ -161,13 +153,7 @@ export default function Navbar({ onOpenPolicy }: NavbarProps) {
                   <ArrowRight className="h-4 w-4" />
                 </a>
 
-                <div className="flex justify-center gap-4 text-xs text-google-gray font-mono mt-4" id="mobile-policy-triggers">
-                  <button onClick={() => { setIsMobileMenuOpen(false); onOpenPolicy('privacy'); }} className="hover:text-google-blue transition-colors">Privacy</button>
-                  <span>•</span>
-                  <button onClick={() => { setIsMobileMenuOpen(false); onOpenPolicy('terms'); }} className="hover:text-google-blue transition-colors">Terms</button>
-                  <span>•</span>
-                  <button onClick={() => { setIsMobileMenuOpen(false); onOpenPolicy('academic'); }} className="hover:text-google-blue transition-colors">Integrity</button>
-                </div>
+
               </div>
             </motion.div>
           </div>
