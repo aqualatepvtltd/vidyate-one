@@ -36,7 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-48 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-32 bg-white" id="hero-section">
+    <section className="relative overflow-hidden pt-36 pb-16 md:pt-5 md:pb-24 lg:pt-48 lg:pb-32 bg-white" id="hero-section">
       {/* Soft background accents with Google's iconic four colors */}
       <div className="absolute top-[5%] left-[5%] w-[30vw] h-[30vw] rounded-full bg-google-blue-light/30 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="absolute bottom-[5%] right-[5%] w-[35vw] h-[35vw] rounded-full bg-google-green-light/20 blur-3xl pointer-events-none" aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function Hero() {
           {/* Tagline Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
+            className="mt-32 inline-flex items-center gap-2.5 rounded-full border border-google-border bg-white px-4 py-1.5 text-xs font-semibold text-google-dark mb-6 shadow-xs"
             id="hero-badge"
           >
             {/* Google colored dots row */}
@@ -77,14 +77,7 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-google-gray max-w-2xl mx-auto leading-relaxed mb-10 font-normal"
-            id="hero-description"
-          >
-            A single subscription gateway linking Pharmacy, Engineering, Commerce, Nursing, and Soft Skills. Explore interactive study tools, sandbox practice assets, and active student hubs.
-          </motion.p>
+          
 
           {/* CTA Buttons - Full Rounded Pills */}
           <motion.div
