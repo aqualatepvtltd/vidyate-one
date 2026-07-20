@@ -285,54 +285,58 @@ export default function PortalDashboard() {
               id="detail-drawer-body"
             >
               <div className="p-6 sm:p-8" id="detail-drawer-content">
-                <div className="flex items-center justify-between mb-5">
+                {/* Header */}
+                <div className="flex items-center justify-between pb-5 border-b border-google-light-gray">
                   <div className="flex items-center gap-3">
                     <h3 className="font-display text-xl font-bold text-google-dark">{selectedHub.title}</h3>
                   </div>
                   {getStatusBadge(selectedHub.status)}
                 </div>
 
-                <p className="text-google-gray text-sm leading-relaxed mb-6">
-                  {selectedHub.description}
-                </p>
+                {/* Scrollable Content */}
+                <div className="max-h-[60vh] overflow-y-auto py-6 px-1 space-y-6">
+                  <p className="text-google-gray text-sm leading-relaxed">
+                    {selectedHub.description}
+                  </p>
 
-                <div className="space-y-4 mb-8">
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Disciplines Addressed</h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {selectedHub.fields.map((f, i) => (
-                        <span key={i} className="rounded-md bg-google-light-gray px-3 py-1 text-xs text-google-dark font-medium">{f}</span>
-                      ))}
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Disciplines Addressed</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedHub.fields.map((f, i) => (
+                          <span key={i} className="rounded-md bg-google-light-gray px-3 py-1 text-xs text-google-dark font-medium">{f}</span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Core Tools Built-In</h4>
-                    <div className="grid grid-cols-2 gap-2 text-xs text-google-gray font-medium">
-                      {selectedHub.features.map((feat, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-google-blue" />
-                          {feat}
-                        </div>
-                      ))}
+                    <div>
+                      <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Core Tools Built-In</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-google-gray font-medium">
+                        {selectedHub.features.map((feat, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className="h-1.5 w-1.5 rounded-full bg-google-blue" />
+                            {feat}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Integration & Access Details</h4>
-                    <p className="text-google-gray text-xs leading-relaxed">
-                      {selectedHub.status === 'active' 
-                        ? 'This portal is fully deployed and synced with our central user database. Single Sign-On (SSO) works automatically.' 
-                        : 'This portal is undergoing active layout validation and database schema planning. Users can register interest to receive access keys once the beta starts.'}
-                    </p>
+                    <div>
+                      <h4 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Integration & Access Details</h4>
+                      <p className="text-google-gray text-xs leading-relaxed">
+                        {selectedHub.status === 'active' 
+                          ? 'This portal is fully deployed and synced with our central user database. Single Sign-On (SSO) works automatically.' 
+                          : 'This portal is undergoing active layout validation and database schema planning. Users can register interest to receive access keys once the beta starts.'}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Drawer actions */}
-                <div className="flex items-center justify-end gap-3 border-t border-google-light-gray pt-5">
+                <div className="flex items-center justify-end gap-3 border-t border-google-light-gray pt-5 bg-white">
                   <button
                     onClick={() => setSelectedHub(null)}
-                    className="rounded-full border border-google-border px-5 py-2.5 text-xs font-semibold text-google-dark hover:bg-google-light-gray transition-colors"
+                    className="rounded-full border border-google-border px-5 py-2.5 text-xs font-semibold text-google-dark hover:bg-google-light-gray/40 transition-colors"
                     id="detail-drawer-close-btn"
                   >
                     Close

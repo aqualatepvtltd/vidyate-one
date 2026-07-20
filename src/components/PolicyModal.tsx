@@ -12,19 +12,17 @@ interface PolicyModalProps {
 const POLICY_DATA: Record<'privacy' | 'terms' | 'academic', PolicyDocument> = {
   privacy: {
     title: "Privacy Policy",
-    lastUpdated: "July 2026",
     content: [
       "Welcome to Vidyate One. We are committed to protecting your personal data and respecting your privacy. This policy explains how we collect, process, and protect your information when using the Vidyate One gateway.",
       "1. Information Collection: Vidyate One does not directly store any of your personal identifiers or user accounts. Accounts and profile credentials are managed entirely by their respective hubs (e.g., Vidyate Student Hub, Vidyate Commerce Hub). We may only log anonymous, aggregated analytics to improve connection speeds and routing precision.",
       "2. Cross-Portal Navigation: When you click a link to proceed to a hub, you are transitioning to a separate service governed by that platform's dedicated Privacy Policy. Please inspect the target platform's parameters before entering credentials.",
       "3. Local Storage: We may use brief browser localStorage entries to preserve your dark/light preference or preferred academic fields to streamline your gateway experience.",
       "4. Safety Measures: We adopt modern container shielding and state-of-the-art encryption protocols across all Vidyate servers to secure routing streams from tampering.",
-      "For privacy inquiries, please contact our core compliance desk at artistscamofficial@gmail.com."
+      "For privacy inquiries, please contact our core compliance desk at teamvidyate@gmail.com."
     ]
   },
   terms: {
     title: "Terms of Service",
-    lastUpdated: "July 2026",
     content: [
       "By accessing the Vidyate One portal, you agree to comply with and be bound by these Terms of Service. Please read them thoroughly.",
       "1. Platform Access: Vidyate One acts as a central hub routing to distinct learning environments. Users agree to access these resources solely for personal, non-commercial educational purposes.",
@@ -36,7 +34,6 @@ const POLICY_DATA: Record<'privacy' | 'terms' | 'academic', PolicyDocument> = {
   },
   academic: {
     title: "Academic Integrity Guidelines",
-    lastUpdated: "July 2026",
     content: [
       "Vidyate's core mission is the promotion of real, transformative learning. We hold all students, educators, and partners to the highest standards of scholastic honesty.",
       "1. Original Work: All assignments, assessments, code submissions, and projects conducted across Vidyate Commerce Hub, Vidyate Tech Hub, and Vidyate Student Hub must represent the original work of the student.",
@@ -104,9 +101,6 @@ export default function PolicyModal({ isOpen, onClose, type }: PolicyModalProps)
                   <h3 className="font-display text-lg font-bold text-google-dark" id="policy-title">
                     {document.title}
                   </h3>
-                  <p className="text-xs text-google-gray font-sans mt-0.5" id="policy-date">
-                    Last updated: {document.lastUpdated}
-                  </p>
                 </div>
               </div>
               <button

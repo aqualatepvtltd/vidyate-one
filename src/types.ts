@@ -32,6 +32,5 @@ export interface InquiryFormInput {
 
 export interface PolicyDocument {
   title: string;
-  lastUpdated: string;
   content: string[];
 }

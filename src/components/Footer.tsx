@@ -14,8 +14,8 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
   return (
     <footer className="bg-google-light-gray/20 text-google-gray border-t border-google-border pt-16 pb-12 font-sans" id="app-footer">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="footer-container">
-        
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-google-light-gray pb-12" id="footer-top-grid">
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-google-light-gray " id="footer-top-grid">
           {/* Brand block */}
           <div className="md:col-span-5 space-y-4" id="footer-brand-block">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
@@ -80,6 +80,17 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   Academic Integrity Code
                 </button>
               </li>
+              <li className="flex py-4"><div className="flex items-center gap-2 ">
+                <span className="font-medium text-google-gray">Go to Top</span>
+                <button
+                  onClick={scrollBackToTop}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-google-gray hover:text-google-dark hover:bg-google-light-gray border border-google-border transition-all shadow-xs cursor-pointer"
+                  title="Scroll back to top"
+                  id="footer-back-to-top-btn"
+                >
+                  <ArrowUp className="h-4.5 w-4.5" />
+                </button>
+              </div></li>
             </ul>
           </div>
         </div>
@@ -89,17 +100,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
           <div>
             &copy; {new Date().getFullYear()} Vidyate Education Group. All rights reserved.
           </div>
-          <div className="flex items-center gap-6">
-            <span className="font-medium text-google-gray">Go to Top</span>
-            <button
-              onClick={scrollBackToTop}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-google-gray hover:text-google-dark hover:bg-google-light-gray border border-google-border transition-all shadow-xs cursor-pointer"
-              title="Scroll back to top"
-              id="footer-back-to-top-btn"
-            >
-              <ArrowUp className="h-4.5 w-4.5" />
-            </button>
-          </div>
+
         </div>
 
       </div>
