@@ -62,7 +62,7 @@ export default function Hero() {
               <span className="h-2 w-2 rounded-full bg-google-yellow" />
               <span className="h-2 w-2 rounded-full bg-google-green" />
             </div>
-            <span className="text-google-gray font-medium">Vidyate One Ecosystem</span>
+            <span className="text-google-gray font-medium">Vidyate One</span>
           </motion.div>
 
           {/* Heading */}

@@ -73,9 +73,7 @@ const FIELDS_DATA: LearningField[] = [
 ];
 
 export default function FieldsSection() {
-  const [activeFieldId, setActiveFieldId] = useState<string>('pharmacy');
-
-  const activeField = FIELDS_DATA.find(f => f.id === activeFieldId) || FIELDS_DATA[0];
+  const [selectedField, setSelectedField] = useState<LearningField | null>(null);
 
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
@@ -111,146 +109,146 @@ export default function FieldsSection() {
         </div>
 
         {/* Dynamic Fields Showcase Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="fields-main-layout">
-
-          {/* Left Buttons Navigation List */}
-          <div className="lg:col-span-5 space-y-3" id="fields-list-container">
-            {FIELDS_DATA.map((field) => {
-              const isActive = field.id === activeFieldId;
-              return (
-                <button
-                  key={field.id}
-                  onClick={() => setActiveFieldId(field.id)}
-                  className={`w-full text-left flex items-center justify-between p-4 rounded-2xl border transition-all ${isActive
-                    ? 'bg-google-light-gray/30 border-google-blue shadow-xs'
-                    : 'bg-white border-google-border hover:bg-google-light-gray/20'
-                    }`}
-                  id={`field-trigger-btn-${field.id}`}
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className={`p-2.5 rounded-full border ${isActive ? field.accentColor : 'text-google-gray bg-google-light-gray border-google-border'}`} id={`field-icon-wrapper-${field.id}`}>
-                      {getIconComponent(field.iconName)}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-google-dark text-sm sm:text-base" id={`field-name-${field.id}`}>
-                        {field.name}
-                      </h4>
-                      <p className="text-xs text-google-gray line-clamp-1 mt-0.5" id={`field-tagline-${field.id}`}>
-                        {field.description}
-                      </p>
-                    </div>
-                  </div>
-                  <ChevronRight className={`h-5 w-5 text-google-gray transition-transform ${isActive ? 'translate-x-1 text-google-blue' : ''}`} />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right Details Panel Viewer */}
-          <div className="lg:col-span-7" id="fields-viewer-container">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFieldId}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.2 }}
-                className="bg-white rounded-2xl border border-google-border p-6 sm:p-8 shadow-xs relative overflow-hidden"
-                id="fields-detail-card"
-              >
-                {/* Visual Top Bar decoration (multicolored Google One accent line) */}
-                <div className="absolute top-0 left-0 right-0 h-1 flex">
-                  <div className="flex-1 bg-google-blue" />
-                  <div className="flex-1 bg-google-red" />
-                  <div className="flex-1 bg-google-yellow" />
-                  <div className="flex-1 bg-google-green" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="fields-main-layout">
+          {FIELDS_DATA.map((field) => (
+            <button
+              key={field.id}
+              onClick={() => setSelectedField(field)}
+              className="w-full text-left flex items-center justify-between p-4 rounded-2xl border bg-white border-google-border hover:bg-google-light-gray/20 hover:border-google-blue/50 hover:shadow-xs transition-all"
+              id={`field-trigger-btn-${field.id}`}
+            >
+              <div className="flex items-center gap-3.5">
+                <div className={`p-2.5 rounded-full border text-google-gray bg-google-light-gray border-google-border`} id={`field-icon-wrapper-${field.id}`}>
+                  {getIconComponent(field.iconName)}
                 </div>
-
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-0 border-b border-google-light-gray pb-5">
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-google-dark">{activeField.name}</h3>
-                    </div>
-                  </div>
+                <div>
+                  <h4 className="font-display font-bold text-google-dark text-sm" id={`field-name-${field.id}`}>
+                    {field.name}
+                  </h4>
+                  <p className="text-xs text-google-gray line-clamp-1 mt-0.5" id={`field-tagline-${field.id}`}>
+                    {field.description}
+                  </p>
                 </div>
-
-                <div className="space-y-6">
-                  {/* Long Description */}
-                  <div>
-                    <h5 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Scope of Learning</h5>
-                    <p className="text-sm text-google-gray leading-relaxed font-normal">
-                      {activeField.extendedDescription}
-                    </p>
-                  </div>
-
-
-
-                  {/* Syllabus sample bullets */}
-                  <div>
-                    <h5 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-3">Key Training Objectives</h5>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">1</span>
-                        <span>Rigorous, board-compliant academic alignments</span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">2</span>
-                        <span>Interactive practice sandboxes & spreadsheet tooling</span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">3</span>
-                        <span>Peer interactions and open review portfolios</span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">4</span>
-                        <span>Direct placement pipelines with strategic recruiters</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Highlights Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-4 bg-google-light-gray/30 rounded-xl border border-google-border">
-                      <div className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-1.5">Featured Spotlight</div>
-                      <div className="text-sm font-bold text-google-dark flex items-center gap-1.5">
-
-                        {activeField.featuredTopic}
-                      </div>
-                    </div>
-                    <div className="p-4 bg-google-light-gray/30 rounded-xl border border-google-border">
-                      <div className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-1.5">Associated Gateways</div>
-                      <div className="text-sm font-bold text-google-dark space-y-1">
-                        {activeField.hubsAssociated.map((hub, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5">
-
-                            <span className="truncate">{hub}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Direct action to portals - Pill outline style */}
-                  <div className="border-t border-google-light-gray pt-5 flex justify-end">
-                    <button
-                      onClick={() => {
-                        const portalSection = document.querySelector('#portals');
-                        if (portalSection) {
-                          portalSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }}
-                      className="group inline-flex items-center gap-1.5 rounded-full border border-google-border px-4 py-2 text-xs font-semibold text-google-blue hover:bg-google-blue-light transition-all"
-                    >
-                      Browse Related Portals
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+              <ChevronRight className="h-5 w-5 text-google-gray" />
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Field Detail Modal */}
+      <AnimatePresence>
+        {selectedField && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" id="field-detail-overlay">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedField(null)}
+              className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs"
+              id="field-detail-backdrop"
+            />
+
+            {/* Modal Body */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', duration: 0.35 }}
+              className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl border border-google-border"
+              id="field-detail-body"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-google-light-gray bg-white px-6 py-5" id="field-detail-header">
+                <div className="flex items-center gap-3.5">
+                  <div className={`p-2.5 rounded-full border ${selectedField.accentColor}`}>
+                    {getIconComponent(selectedField.iconName)}
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-google-dark">{selectedField.name}</h3>
+                </div>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="max-h-[60vh] overflow-y-auto p-6 space-y-6" id="field-detail-content">
+                {/* Long Description */}
+                <div>
+                  <h5 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-2">Scope of Learning</h5>
+                  <p className="text-sm text-google-gray leading-relaxed font-normal">
+                    {selectedField.extendedDescription}
+                  </p>
+                </div>
+
+                {/* Syllabus sample bullets */}
+                <div>
+                  <h5 className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-3">Key Training Objectives</h5>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">1</span>
+                      <span>Rigorous, board-compliant academic alignments</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">2</span>
+                      <span>Interactive practice sandboxes & spreadsheet tooling</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">3</span>
+                      <span>Peer interactions and open review portfolios</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs text-google-gray font-medium">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-google-blue-light text-google-blue text-[10px] font-bold shrink-0">4</span>
+                      <span>Direct placement pipelines with strategic recruiters</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Highlights Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-4 bg-google-light-gray/30 rounded-xl border border-google-border">
+                    <div className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-1.5">Featured Spotlight</div>
+                    <div className="text-sm font-bold text-google-dark flex items-center gap-1.5">
+                      {selectedField.featuredTopic}
+                    </div>
+                  </div>
+                  <div className="p-4 bg-google-light-gray/30 rounded-xl border border-google-border">
+                    <div className="text-[10px] uppercase tracking-wider font-semibold text-google-gray font-mono mb-1.5">Associated Gateways</div>
+                    <div className="text-sm font-bold text-google-dark space-y-1">
+                      {selectedField.hubsAssociated.map((hub, idx) => (
+                        <div key={idx} className="flex items-center gap-1.5">
+                          <span className="truncate">{hub}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="border-t border-google-light-gray px-6 py-4 bg-google-light-gray/20 flex justify-end gap-3">
+                <button
+                  onClick={() => setSelectedField(null)}
+                  className="rounded-full border border-google-border px-5 py-2.5 text-xs font-semibold text-google-dark hover:bg-google-light-gray/40 transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedField(null);
+                    const portalSection = document.querySelector('#portals');
+                    if (portalSection) {
+                      portalSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="group inline-flex items-center gap-1.5 rounded-full bg-google-blue text-white px-5 py-2.5 text-xs font-semibold hover:bg-google-blue-hover transition-colors shadow-xs"
+                >
+                  Browse Portals
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
