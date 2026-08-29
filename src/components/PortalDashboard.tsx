@@ -38,17 +38,6 @@ const PORTALS_DATA: VidyateHub[] = [
     color: 'bg-google-yellow text-google-dark'
   },
   {
-    id: 'pharmacy-hub',
-    title: 'Vidyate Pharmacy & Healthcare Hub',
-    description: 'Targeted scientific portal for clinical pharmacy, nursing formulations, drug interactions lookup, biochemistry labs, and medical boards preps.',
-    url: '#',
-    status: 'upcoming',
-    category: 'healthcare',
-    fields: ['Pharmacy', 'Nursing', 'Pharmacology', 'Biochemistry'],
-    features: ['Drug mechanism mockups', 'Clinical dosage guidelines', 'Anatomy flashcards', 'Surgical checklists'],
-    color: 'bg-google-green text-white'
-  },
-  {
     id: 'softskills-hub',
     title: 'Vidyate Soft Skill Hub',
     description: 'Dedicated interpersonal incubator containing modules for group speaking, professional writing, executive presentations, mock technical reviews, and career counseling.',
